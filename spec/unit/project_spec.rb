@@ -277,6 +277,13 @@ module Omnibus
       end
     end
 
+    describe '#build_version' do
+      it 'should generate an error if an invalid version string is passed' do
+        expect { subject.build_version('foo') }
+          .to raise_error(Omnibus::Error, 'foo is an invalid value for build_version')
+      end
+    end
+
     describe "#packagers_for_system" do
       it "returns array of packager objects" do
         subject.packagers_for_system.each do |packager|

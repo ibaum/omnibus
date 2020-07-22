@@ -371,6 +371,10 @@ module Omnibus
           "#build_version when a block is given!"
       end
 
+      if !null?(val) && !val.start_with?(/[0-9]/)
+        raise Error, "#{val} is an invalid value for build_version"
+      end
+
       if block
         @build_version_dsl = BuildVersionDSL.new(&block)
       else
